@@ -1,24 +1,32 @@
-# README
+# <yummy>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+< 行ってみたいを後押しする食事レビューサイト >
 
-Things you may want to cover:
+### テーマを選んだ理由
+< デートや友達との遊びで出かける機会は多いが、おませで食事の場所となると決めるのは非常に面倒だと感じたことがありました。
+特に私がお店選びをする際に内装がおしゃれやデート向けインスタ映えといったキーワードがあると非常に行ってみたいと興味がそそられます。
+ですが、そういったコメントはレビューを開いた中に書かれてたりするため一見わかりにくいところが不便だと思うところがありました。
+そのため訪れた人の評価や印象がわかりやすいアプリを作ってみたいと思いこのテーマにしました
+>
 
-* Ruby version
+### ターゲットユーザ
+< 10代～30代辺りの若者 >
 
-* System dependencies
+### 主な利用シーン
+< お店選びを考える時 >
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
