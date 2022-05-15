@@ -43,7 +43,7 @@
 予約の一覧表示、詳細表示、編集機能
 
 ## 設計書
-<https://docs.google.com/spreadsheets/d/142KZVBw_qFwkmghd2tzzO9V4Hv6sBsU20D7vLp8LgfU/edit#gid=1091086188>
+・実装機能リスト　<https://docs.google.com/spreadsheets/d/142KZVBw_qFwkmghd2tzzO9V4Hv6sBsU20D7vLp8LgfU/edit#gid=1091086188>
 
 ## 開発環境
 - OS：Linux(CentOS)
