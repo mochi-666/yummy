@@ -12,13 +12,10 @@
 
 
 ### ターゲットユーザ
-・10代～30代
-・性別：男女問わない
 ・飲食店を見つけるのが苦手な人
 ・お店選択を失敗したくない人（デートや記念日等含む）
 ・新しいお店を開拓したい人
-・
-
+・レビューを中心としてお店を決める人
 
 ### 主な利用シーン
 ・遊ぶ当日にお店選びを考える時
@@ -26,7 +23,8 @@
 ・ネットサーフィン
 
 ## 設計書
-・実装機能リスト　<https://docs.google.com/spreadsheets/d/142KZVBw_qFwkmghd2tzzO9V4Hv6sBsU20D7vLp8LgfU/edit#gid=1091086188>
+・yummy_フォルダー <https://drive.google.com/drive/folders/1xbWqxszml2eieB5ykhRqUUBUOODRd2WQ?usp=sharing> 
+  ・実装機能リスト　 <https://docs.google.com/spreadsheets/d/142KZVBw_qFwkmghd2tzzO9V4Hv6sBsU20D7vLp8LgfU/edit#gid=1091086188>
 
 ## 開発環境
 - OS：Linux(CentOS)
