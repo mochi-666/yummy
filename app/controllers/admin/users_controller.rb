@@ -2,6 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
   def index
     @users = User.all
+    @users = User.page(params[:page]).per(4)
   end
 
   def show
@@ -12,6 +13,7 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+     @name = @user.first_name + @user.last_name
   end
 
   def update

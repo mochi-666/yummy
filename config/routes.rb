@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :stores, only: [:index, :show]
-    resources :gernres, only: [:index, :create, :edit, :update]
+    resources :stores, only: [:index, :show, :new, :edit, :update, :create, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
     resources :tags, only: [:index, :create, :edit, :update]
     resources :scenes, only: [:index, :create, :edit, :update]
     resources :atmospheres, only: [:index, :create, :edit, :update]
@@ -28,11 +28,14 @@ Rails.application.routes.draw do
     get 'my_page' => 'users#show'
     get 'unsbscribe' => 'users#create'
     patch 'withdraw' => 'users#destroy'
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
     resources :users, only: [:edit, :update, :create, :destroy]
     resources :reviews, only: [:new, :show, :edit, :update, :destroy]
     resources :review_comments, only: [:create, :update, :destroy]
     resources :genres, only: [:index]
+  end
+
+  devise_scope :user do
+    post 'user/guest_sign_in', to: 'user/sessions#guest'
   end
 
 end
