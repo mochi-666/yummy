@@ -1,0 +1,21 @@
+<div class="container">
+  <p class="h4" style="margin: 50px;">店舗詳細</p>
+  <div style="display: inline-block; margin-left: 100px;">
+    <% @store.store_images.first(1).each do |image| %>
+      <%= attachment_image_tag image, :image, :fill, 150, 200 %>
+    <% end %>
+  </div>
+  <table style="display: inline-block; margin-left: 20px;">
+    <tr>
+      <td style="display: inline-block; height: 50px;" class="font-weight-bold">商品名</td>
+      <td style="display: inline-block; height: 50px; margin-left: 44px;"><%= @store.name %></td>
+    </tr>
+    <tr>
+      <td style="display: inline-block; height: 50px;" class="font-weight-bold">商品説明</td>
+      <td style="display: inline-block; height: 50px; margin-left: 30px;"><%= @store.explanation %></td>
+    </tr>
+  </table>
+  <div style="margin-left: 500px; margin-top: 50px;">
+    <%=link_to "編集する", edit_admin_store_path, class: "btn btn-success" %>
+  </div>
+</div>

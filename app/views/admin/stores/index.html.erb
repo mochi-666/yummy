@@ -2,13 +2,32 @@
   <h4>店舗一覧</h4>
   <p class="text-right"><%= link_to"新規登録", new_admin_store_path, class: "btn btn-success" %></p>
   <div class="store_explanation">
-    <% @store.each do |store| %>
-    <P><%= store.id %></P>
-    <p><%= attachment_image_tag store, :image, size: "200x150" %></p>
-    <p><%= store.name %></p>
-    <% end %>
+    <% @stores.each do |store| %>
+      <table style="margin-top: 30px; width: -webkit-fill-available;;">
+      <tr class="border-top border-bottom">
+        <th>店舗ID</th>
+        <th>店舗画像</th>
+        <th>店舗名</th>
+      </tr>
+      <tr>
+        <td><%= store.id %></td>
+        <td>
+          <% if store.store_images.present? %>
+            <% store.store_images.first(1).each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 150, 200 %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to admin_store_path(store.id) do %>
+          <%= store.name %>
+          <% end %>
+          </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
   <div style="margin-left: 450px; margin-top: 50px;">
-    <%= paginate @store %>
+    <%= paginate @stores %>
   </div>
 </div>

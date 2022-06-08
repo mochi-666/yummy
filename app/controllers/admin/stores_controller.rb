@@ -1,8 +1,7 @@
 class Admin::StoresController < ApplicationController
 
   def index
-    @stores = Store.all
-    @store = Store.page(params[:page]).per(5)
+    @stores = Store.page(params[:page]).per(5)
   end
 
   def create
@@ -38,7 +37,7 @@ class Admin::StoresController < ApplicationController
   private
 
   def store_params
-    params.require(:store).permit(:name, :images_files, :gernre_id, :tag_id, :scene_id, :atmosphere_id, :explanation)
+    params.require(:store).permit(:name, :gernre_id, :tag_id, :scene_id, :atmosphere_id, :explanatio, store_images_images: [])
   end
 
 

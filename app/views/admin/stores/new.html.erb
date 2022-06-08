@@ -9,8 +9,8 @@
   <%= form_with model: @store,url: admin_stores_path, local:true do |f| %>
   <div>
     <div>
-      <p>店舗画像</p>
-      <p><%= f.attachment_field :images_files, multiple: true  %></p>
+      <p>店舗画像(複数登録可)</p>
+      <p><%= f.attachment_field :store_images_images, multiple: true  %></p>
     </div>
     <div>
       <p>店舗地域</p>
