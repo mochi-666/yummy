@@ -2,14 +2,31 @@
   <h4>店舗一覧</h4>
   <p class="text-right"><%= link_to"新規登録", new_admin_store_path, class: "btn btn-success" %></p>
   <div class="store_explanation">
-    <% @stores.each do |store| %>
-      <table style="margin-top: 30px; width: -webkit-fill-available;;">
+    <h3>詳細検索</h3>
+    <%= search_form_for @search, url:  admin_stores_path do |f| %>
+    <p>
+      <%= f.label :name, "店舗名" %>
+      <%= f.search_field :name_cont %>
+    </p>
+    <P>
+      <%= f.label :area, "地域(都道府県)" %>
+      <%= f.search_field :area_cont %>
+    </P>
+    <p>
+      <%= f.submit "検索" %>
+    </p>
+    <% end %>
+    <table style="margin-top: 30px; width: -webkit-fill-available;;">
       <tr class="border-top border-bottom">
         <th>店舗ID</th>
         <th>店舗画像</th>
         <th>店舗名</th>
       </tr>
-      <tr>
+    </table>
+    <% @store_search.each do |store| %>
+    <%# @stores.each do |store| %>
+    <table style="margin-top: 30px; width: -webkit-fill-available;;">
+      <tr class="border-top border-bottom">
         <td><%= store.id %></td>
         <td>
           <% if store.store_images.present? %>

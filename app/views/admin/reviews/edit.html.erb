@@ -1,0 +1,40 @@
+<div class="container">
+  <p class="h4" style="margin-top: 50px; margin-left: 100px; margin-bottom: 50px;">レビュー編集</p>
+  <% if @review.errors.any? %>
+  <%= @review.errors.count %>件のエラーが発生しました
+    <% @review.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+  <% form_with model: @review, url: review_path, local:true do |f| %>
+  <div style="display: inline-block; margin-left: 250px;">
+       <div clas="col">
+      <p style="display: inline-block;" class=" font-weight-bold ">タイトル</p>
+      <p style="display: inline-block; margin-left: 65px;"><%= f.text_field :title %></p><br>
+    </div>
+    <div clas="col">
+      <p  style="display: inline-block;" class="font-weight-bold">画像</p>
+      <p  style="display: inline-block; margin-left: 50px;">
+      <%= f.attachment_field :review_images_images, multiple: true %>
+      </p>
+    </div>
+    <div>
+      <% @review.scenes.each do |scene| %>
+        <%= scene.name %>
+      <% end %>
+    </div>
+    <div>
+      <% @review.atmospheres.each do |atmosphere| %>
+        <%= atmosphere.name %>
+      <% end %>
+    </div>
+    <div clas="col">
+      <p style="display: inline-block;" class="font-weight-bold ">店舗説明</p>
+      <p style="display: inline-block; margin-left: 50px;"><%= f.text_area :explanation %></p><br>
+    </div>
+    <div style="margin-left: 200px;">
+      <%= f.submit '変更を保存' , class: "btn btn-success" %>
+    </div>
+  <% end %>
+  <div> <%= link_to "削除", review_path(@review), method: :delete %></div>
+</div>

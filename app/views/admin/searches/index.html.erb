@@ -1,0 +1,21 @@
+<div>
+<% @stores.each do |store| %>
+<%= link_to admin_store_path(store.id) do %>
+  <div>
+    <% if store.store_images.present? %>
+      <% store.store_images.first(1).each do |image| %>
+      <%= attachment_image_tag image, :image, :fill, 150, 200 %>
+      <% end %>
+    <% end %>
+  </div>
+  <div><%= store.name %></div>
+  <div><%= store.area %></div>
+  <div> <% Atmosphere.all.each do |atmosphere| %>
+            <% if store.reviews.joins(:atmospheres).exists?(atmospheres: { id:  atmosphere.id} ) %>
+              <%= atmosphere.name %>
+            <% end %>
+          <% end %>
+  </div>
+<% end %>
+<% end %>
+</div>

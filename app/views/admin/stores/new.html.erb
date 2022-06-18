@@ -9,19 +9,30 @@
   <%= form_with model: @store,url: admin_stores_path, local:true do |f| %>
   <div>
     <div>
-      <p>店舗画像(複数登録可)</p>
+      <p><%= f.label :store_images_images, '店舗画像(複数登録可)' %></p>
       <p><%= f.attachment_field :store_images_images, multiple: true  %></p>
     </div>
     <div>
-      <p>店舗地域</p>
-      <p></p>
+      <p><%= f.label :area, "地域(都道府県)" %></p>
+      <p><%= f.text_field :area %></p>
     </div>
     <div>
-      <p>店舗名</p>
+      <p><%= f.label :genre, "ジャンル" %></p>
+      <p>
+        <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+          <%= genre.label do %>
+            <%= genre.check_box %>
+            <%= genre.text %>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+    <div>
+      <p><%= f.label :name, "店舗名" %></p>
       <p><%= f.text_field :name %></p><br>
     </div>
     <div>
-      <p>店舗説明</p>
+      <p><%= f.label :explanation, "店舗説明" %></p>
       <p><%= f.text_area :explanation %></p><br>
     </div>
     <div>

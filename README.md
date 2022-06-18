@@ -35,3 +35,8 @@
 
 ## 使用素材
 検討中
+
+
+##メモ＃＃
+ジャンルは"rails c"で"Genre.create(name: "○○")"で追加
+⇒削除は"Genre.find(  ).destroy又はGenre.destroy_all

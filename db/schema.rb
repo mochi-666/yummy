@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_145747) do
+ActiveRecord::Schema.define(version: 2022_06_15_101116) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,16 +24,34 @@ ActiveRecord::Schema.define(version: 2022_06_07_145747) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "atmospheres", force: :cascade do |t|
-    t.integer "store_id"
+  create_table "atmosphere_review_relations", force: :cascade do |t|
     t.integer "review_id"
+    t.integer "atmosphere_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "atmosphere_store_relations", force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "atmosphere_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "atmospheres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
+  create_table "genre_relations", force: :cascade do |t|
     t.integer "store_id"
+    t.integer "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,19 +65,38 @@ ActiveRecord::Schema.define(version: 2022_06_07_145747) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "review_images", force: :cascade do |t|
+    t.integer "review_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "store_id"
     t.integer "user_id"
+    t.integer "review_images_id"
     t.string "title"
-    t.string "image_id"
-    t.integer "atmosphere_id"
-    t.string "evaluation"
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scene_review_relations", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "scene_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scene_store_relations", force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "scene_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "scenes", force: :cascade do |t|
-    t.integer "store_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,21 +110,12 @@ ActiveRecord::Schema.define(version: 2022_06_07_145747) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.integer "gernre_id"
-    t.integer "tag_id"
-    t.integer "scene_id"
-    t.integer "atmosphere_id"
     t.integer "store_images_id"
+    t.integer "review_id"
     t.string "name"
     t.string "image_id"
     t.text "explanation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.integer "store_id"
-    t.string "name"
+    t.string "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

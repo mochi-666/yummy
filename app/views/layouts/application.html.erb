@@ -19,14 +19,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
           <% if user_signed_in? %>
+          <% if current_user.email == "guest@example.com" %>
+          <% else%>
           <li class="nav-item active mr-2 mb-2">
             <%= link_to 'マイページ', my_page_path, class: "btn btn-success" %>
           </li>
+          <% end %>
           <li class="nav-item active mr-2 mb-2">
             <%= link_to '店舗一覧', stores_path, class: "btn btn-primary" %>
-          </li>
-          <li class="nav-item active mr-2 mb-2">
-            <%= link_to '詳細検索', genres_path, class: "btn btn-warning" %>
           </li>
           <li class="nav-item active mr-2 mb-2">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
@@ -37,9 +37,6 @@
           </li>
           <li class="nav-item active mr-2 mb-2">
             <%= link_to '顧客一覧', admin_users_path, class: "btn btn-secondary" %>
-          </li>
-          <li class="nav-item active mr-2 mb-2">
-            <%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-dark" %>
           </li>
           <li class="nav-item active mr-2 mb-2">
             <%= link_to'詳細検索', admin_searches_path, class: "btn btn-primary" %>

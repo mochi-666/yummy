@@ -5,9 +5,9 @@
           <span class="h2 mr-5">新規会員登録<span>
         </div>
         <div class="table-responsive-sm">
+        <%= form_with model: @user, url:  user_registration_path(resource), local:true do |f| %>
         <table class="table">
           <tbody class="table table-borderless">
-            <%= form_with model: @user, url:  user_registration_path(resource), local:true do |f| %>
             <%= render "public/shared/error_messages", resource: resource %>
             <tr>
               <td>名前(姓)</td>

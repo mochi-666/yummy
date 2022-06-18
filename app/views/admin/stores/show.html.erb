@@ -1,21 +1,69 @@
 <div class="container">
   <p class="h4" style="margin: 50px;">店舗詳細</p>
   <div style="display: inline-block; margin-left: 100px;">
-    <% @store.store_images.first(1).each do |image| %>
+    <% @store.store_images.each do |image| %>
       <%= attachment_image_tag image, :image, :fill, 150, 200 %>
     <% end %>
   </div>
+
   <table style="display: inline-block; margin-left: 20px;">
     <tr>
-      <td style="display: inline-block; height: 50px;" class="font-weight-bold">商品名</td>
+      <td style="display: inline-block; height: 50px;" class="font-weight-bold">ジャンル</td>
+      <td style="display: inline-block; height: 50px; margin-left: 44px;">
+        <% @store.genres.each do |genre| %>
+          <%= genre.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td style="display: inline-block; height: 50px;" class="font-weight-bold">地域</td>
+      <td style="display: inline-block; height: 50px; margin-left: 44px;"><%= @store.area %></td>
+    </tr>
+    <tr>
+      <td style="display: inline-block; height: 50px;" class="font-weight-bold">店舗名</td>
       <td style="display: inline-block; height: 50px; margin-left: 44px;"><%= @store.name %></td>
     </tr>
     <tr>
-      <td style="display: inline-block; height: 50px;" class="font-weight-bold">商品説明</td>
+      <td style="display: inline-block; height: 50px;" class="font-weight-bold">店舗詳細</td>
       <td style="display: inline-block; height: 50px; margin-left: 30px;"><%= @store.explanation %></td>
     </tr>
   </table>
-  <div style="margin-left: 500px; margin-top: 50px;">
-    <%=link_to "編集する", edit_admin_store_path, class: "btn btn-success" %>
+  <% @reviews.each do |review| %>
+  <%= link_to admin_review_path(review) do %>
+  <table style="display: inline-block; margin-left: 20px;">
+    <td>
+      <% review.review_images.first(1).each do |image| %>
+        <%= attachment_image_tag image, :image, :fill, 150, 150 %>
+      <% end %>
+    </td>
+    <tr>
+      <td>タイトル</td>
+      <td> <%= review.title %></td>
+    </tr>
+    <tr>
+      <td>シーン</td>
+      <td>
+        <% review.scenes.each do |scene| %>
+        <%= scene.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>雰囲気</td>
+      <td>
+        <% review.atmospheres.each do |atmosphere| %>
+          <%= atmosphere.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>レビュー内容</td>
+      <td><%= review.text %></td>
+    </tr>
+  </table>
+  <% end %>
+  <% end %>
+  <div style="margin-left: 450px; margin-top: 50px;">
+    <%= paginate @reviews %>
   </div>
 </div>
