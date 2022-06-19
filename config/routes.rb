@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :stores, only: [:index, :show, :new, :edit, :update, :create]
+    resources :stores, only: [:index, :show, :new, :edit, :update, :create, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
     resources :searches, only: [:index]
      resources :reviews, only: [:show,:destroy] do

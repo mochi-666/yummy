@@ -1,9 +1,9 @@
 class Admin::StoresController < ApplicationController
 
   def index
-    @stores = Store.page(params[:page]).per(5)
+    @stores = Store.page(params[:page]).per(4)
     @search = Store.ransack(params[:q])
-    @store_search = @search.result(distinct: true).page(params[:page]).per(5)
+    @store_search = @search.result(distinct: true).page(params[:page]).per(4)
 
 
     # if params[:q].nil? || (params[:q][:name_cont].blank? && params[:q][:area_cont].blank?)
@@ -43,11 +43,17 @@ class Admin::StoresController < ApplicationController
 
   def show
     @store = Store.find(params[:id])
-    @reviews = @store.reviews.page(params[:page]).per(5)
+    @reviews = @store.reviews.page(params[:page]).per(4)
   end
 
   def edit
     @store = Store.find(params[:id])
+  end
+
+  def destroy
+    @store = Store.find(params[:id])
+    @store.destroy
+    redirect_to admin_stores_path
   end
 
   def update

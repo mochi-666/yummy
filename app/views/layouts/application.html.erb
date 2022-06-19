@@ -22,24 +22,21 @@
           <% if current_user.email == "guest@example.com" %>
           <% else%>
           <li class="nav-item active mr-2 mb-2">
-            <%= link_to 'マイページ', my_page_path, class: "btn btn-success" %>
+            <%= link_to "マイページ", my_page_path, class: "btn btn-success" %>
           </li>
           <% end %>
           <li class="nav-item active mr-2 mb-2">
-            <%= link_to '店舗一覧', stores_path, class: "btn btn-primary" %>
+            <%= link_to "店舗一覧", stores_path, class: "btn btn-primary" %>
           </li>
           <li class="nav-item active mr-2 mb-2">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
           </li>
           <% elsif admin_signed_in? %>
           <li class="nav-item active mr-2 mb-2">
-            <%= link_to '店舗一覧', admin_stores_path, class: "btn btn-primary" %>
+            <%= link_to "店舗一覧", admin_stores_path, class: "btn btn-primary" %>
           </li>
           <li class="nav-item active mr-2 mb-2">
-            <%= link_to '顧客一覧', admin_users_path, class: "btn btn-secondary" %>
-          </li>
-          <li class="nav-item active mr-2 mb-2">
-            <%= link_to'詳細検索', admin_searches_path, class: "btn btn-primary" %>
+            <%= link_to "顧客一覧", admin_users_path, class: "btn btn-secondary" %>
           </li>
           <li class="nav-item active mr-2 mb-2">
            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-danger" %>

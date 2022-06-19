@@ -1,12 +1,13 @@
 <div class="container">
-  <b style="margin-left: 50px; margin-top: 100px; font-size: xx-large;">店舗新規登録</b>
+  <b style="margin-left: 50px; margin-top: 100px; font-size: xx-large;">店舗情報編集</b>
+  <p class="text-right"><%= link_to"店舗削除", admin_store_path(@store), method: :delete, class: "btn btn-danger" %></p>
   <% if @store.errors.any? %>
   <%= @store.errors.count %>件のエラーが発生しました
     <% @store.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>
   <% end %>
-  <%= form_with model: @store,url: admin_stores_path, local:true do |f| %>
+  <%= form_with model: @store,url: admin_store_path, local:true do |f| %>
   <div style="display: inline-block; margin-left: 250px;">
     <div class="col", style="margin-top: 50px;">
       <p><%= f.label :store_images_images, '店舗画像(複数登録可)' %></p>
@@ -36,7 +37,7 @@
       <p><%= f.text_area :explanation, size: "50x5" %></p><br>
     </div>
     <div style="margin-left: 200px;">
-      <%= f.submit '新規投稿' , class: "btn btn-success" %>
+      <%= f.submit '情報を変更' , class: "btn btn-success" %>
     </div>
     <% end %>
   </div>
