@@ -1,47 +1,48 @@
-<div>
-  <div>
-    <h2>レビュー新規投稿</h2>
-  </div>
-  <%= form_with model: @review, url: reviews_path, local:true do |f| %>
-  <%= f.hidden_field :store_id, value: @store.id %>
-  <div>
-    <div>
-      <P><%= f.label :title, "タイトル" %></P>
-      <P><%= f.text_field :title %></P>
-    </div>
-    <div>
-      <P><%= f.label :review_images_images, "投稿画像(複数可)"%></P>
-      <P><%= f.attachment_field :review_images_images, multiple: true %></P>
-    </div>
-     <div>
-      <p><%= f.label :review_atmosphere_name,"お店の利用シーン"%></p>
-      <p>
+<div class="container">
+  <b style="margin-left: -5%; font-size: xx-large;">レビュー新規投稿</b>
+   <div class="row" style="margin-top: 5%;">
+     <div class= "col-md-12">
+      <%= form_with model: @review, url: reviews_path, local:true do |f| %>
+      <%= f.hidden_field :store_id, value: @store.id %>
+  <table class="table table-borderless">
+    <tr>
+      <td><%= f.label :title, "タイトル" %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :review_images_images, "投稿画像(複数可)"%></td>
+      <td><%= f.attachment_field :review_images_images, multiple: true %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :review_atmosphere_name,"お店の利用シーン"%></td>
+      <td>
         <%= f.collection_check_boxes(:scene_ids, Scene.all, :id, :name) do |scene| %>
           <%= scene.label do %>
             <%= scene.check_box %>
             <%= scene.text %>
           <% end %>
         <% end %>
-      </p>
-    </div>
-    <div>
-      <p><%= f.label :review_atmosphere_name,"お店の雰囲気"%></p>
-      <p>
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.label :review_atmosphere_name,"お店の雰囲気"%></td>
+      <td>
         <%= f.collection_check_boxes(:atmosphere_ids, Atmosphere.all, :id, :name) do |atmosphere| %>
           <%= atmosphere.label do %>
             <%= atmosphere.check_box %>
             <%= atmosphere.text %>
           <% end %>
         <% end %>
-      </p>
-    </div>
-    <div>
-      <P><%= f.label :text, "レビュー"%></P>
-      <P><%= f.text_field :text %></P>
-    </div>
-  </div>
-  <div>
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.label :text, "レビュー"%></td>
+      <td><%= f.text_field :text %></td>
+    </tr>
+  </table>
+  <div style="text-align: center; margin-top: 2%;">
     <%= f.submit '新規投稿' , class: "btn btn-success" %>
   </div>
   <% end %>
+</div>
 </div>

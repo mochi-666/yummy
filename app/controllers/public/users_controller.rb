@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = current_user
-
+    @name = @user.first_name + @user.last_name
   end
 
   def update

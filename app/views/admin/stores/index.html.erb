@@ -2,7 +2,7 @@
   <b style="margin-left: 100px; margin-top: 100px; font-size: xx-large;">店舗一覧</b>
   <p class="text-right"><%= link_to"新規登録", new_admin_store_path, class: "btn btn-success" %></p>
   <div class="store_explanation">
-    <p>
+    <div>
       <b style="margin-left: 100px; margin-top: 100px; font-size: large;">検索</b>
       <%= search_form_for @search, url:  admin_stores_path do |f| %>
       <%= f.label :name, "店舗名" %>
@@ -11,7 +11,7 @@
       <%= f.search_field :area_cont %>
       <%= f.submit "検索", class: "btn btn-success"  %>
        <% end %>
-    </p>
+    </div>
     <table style="margin-top: 50px; text-align: center;"　class="table table-success table-striped">
       <tr class="border-top border-bottom font-weight-bold", style="text-align: center;">
         <th>店舗画像</th>

@@ -1,26 +1,26 @@
 <div class="container-fluid">
-	<div class="row h-50">
-	  <div class= "col-md-6 offset-md-3 mt-5">
-	    <div>
-        <span class="h2 mr-5">会員情報編集</><span>
-      </div>
-      <div class="table-responsive-sm">
-        <table class="table">
-          <tbody class="table table-borderless">
+	  <div class="row h-50">
+	    <div class= "col-md-6 offset-md-3 mt-5">
+	      <div>
+          <span class="h2 mr-5", style="margin-top: 5%;"><%= @name %>さんの会員情報編集<span>
+        </div>
+        <div class="table-responsive-sm" style="margin-top: 5%;">
           <% if @user.errors.any? %>
             <%= @user.errors.count %>件のエラーが発生しました
             <% @user.errors.full_messages.each do |message| %>
               <%= message %>
             <% end %>
           <% end %>
-          <%= form_with model: @user,url: user_path,local:true do |f| %>
+        <table class="table">
+          <tbody class="table table-borderless">
+            <%= form_with model: @user,url: user_path,local:true do |f| %>
             <tr>
               <td>氏名</td>
               <td><%= f.text_field :first_name, autofocus: true %></td>
               <td><%= f.text_field :last_name, autofocus: true %></td>
             </tr>
             <tr>
-              <td>フリガナ</td>
+              <td>フリガナ(セイ)</td>
               <td><%= f.text_field :first_name_kana, autofocus: true %></td>
               <td><%= f.text_field :last_name_kana, autofocus: true %></td>
             </tr>
@@ -34,7 +34,7 @@
             </tr>
           </tbody>
         </table>
-        <table style="display: inline-block; margin-left: 275px;">
+        <table style="display: inline-block; margin-left: 35%; margin-top: 5%;">
           <tr>
             <td class="mt-5" style="width: 300px;"><%= f.submit "変更を保存", class: "btn btn-success" %></td>
             <td class="mt-5"><%= link_to "退会する",  unsbscribe_path, class: "btn btn-danger" %></td>

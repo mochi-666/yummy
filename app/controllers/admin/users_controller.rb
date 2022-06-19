@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-     @name = @user.first_name + @user.last_name
+    @name = @user.first_name + @user.last_name
   end
 
   def update

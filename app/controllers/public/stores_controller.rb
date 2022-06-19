@@ -4,7 +4,7 @@ class Public::StoresController < ApplicationController
     @reviews = Review.all
     @scenes = Scene.all
     @search = Store.ransack(params[:q])
-    @stores_search = @search.result(distinct: true).page(params[:page]).per(5)
+    @store_search = @search.result(distinct: true).page(params[:page]).per(5)
   end
 
   def show
