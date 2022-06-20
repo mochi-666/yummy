@@ -40,7 +40,6 @@ class Public::ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    @store = Store.find(params[:store_id])
     @store = @review.store
     @review.destroy
     redirect_to store_path(@store.id)

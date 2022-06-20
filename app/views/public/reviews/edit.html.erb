@@ -1,46 +1,57 @@
 <div class="container">
   <p class="h4" style="margin-top: 50px; margin-left: 100px; margin-bottom: 50px;">レビュー編集</p>
   <% if @review.errors.any? %>
-  <%= @review.errors.count %>件のエラーが発生しました
+    <%= @review.errors.count %>件のエラーが発生しました
     <% @review.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>
   <% end %>
-
-  <%= form_with model: @review, url: review_path(@review.id), local:true do |f| %>
-  <div style="display: inline-block; margin-left: 250px;">
-    <div clas="col">
-      <p style="display: inline-block;" class=" font-weight-bold ">タイトル</p>
-      <p style="display: inline-block; margin-left: 65px;"><%= f.text_field :title %></p><br>
-    </div>
-    <div clas="col">
-      <p  style="display: inline-block;" class="font-weight-bold">画像</p>
-      <p  style="display: inline-block; margin-left: 50px;">
-      <%= f.attachment_field :review_images_images, multiple: true %>
-      </p>
-    </div>
-    <div>
-     <%= f.collection_check_boxes(:scene_ids, Scene.all, :id, :name) do |scene| %>
-          <%= scene.label do %>
-            <%= scene.check_box %>
-            <%= scene.text %>
-          <% end %>
-        <% end %>
-    </div>
-    <div>
-      <%= f.collection_check_boxes(:atmosphere_ids, Atmosphere.all, :id, :name) do |atmosphere| %>
-        <%= atmosphere.label do %>
-          <%= atmosphere.check_box %>
-          <%= atmosphere.text %>
-        <% end %>
+  <div class="row" style="margin-top: 5%;">
+    <div class= "col-md-12">
+      <%= form_with model: @review, url: review_path(@review.id), local:true do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td><%= f.label :title, "タイトル" %></td>
+          <td><%= f.text_field :title, size: "50x10" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :review_images_images, "投稿画像(複数可)"%></td>
+          <td><%= f.attachment_field :review_images_images, multiple: true %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :review_atmosphere_name,"お店の利用シーン"%></td>
+          <td>
+            <%= f.collection_check_boxes(:scene_ids, Scene.all, :id, :name) do |scene| %>
+              <%= scene.label do %>
+                <%= scene.check_box %>
+              <%= scene.text %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :review_atmosphere_name,"お店の雰囲気"%></td>
+          <td>
+            <%= f.collection_check_boxes(:atmosphere_ids, Atmosphere.all, :id, :name) do |atmosphere| %>
+              <%= atmosphere.label do %>
+                <%= atmosphere.check_box %>
+                <%= atmosphere.text %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :text, "レビュー内容"%></td>
+          <td><%= f.text_area :text, size: "50x10" %></td>
+        </tr>
+      </table>
+      <table style="display: inline-block; margin-left: 35%; margin-top: 5%;">
+        <tr>
+          <td class="mt-5" style="width: 300px;"><%= f.submit '変更を保存', class: "btn btn-success" %></td>
+          <td class="mt-5"><%= link_to "レビューを削除", review_path(@review), method: :delete, class: "btn btn-danger" %></td>
+        </tr>
+      </table>
       <% end %>
     </div>
-    <div clas="col">
-      <p style="display: inline-block;" class=" font-weight-bold ">レビュー内容</p>
-      <p style="display: inline-block; margin-left: 65px;"><%= f.text_field :text %></p><br>
-    </div>
-      <%= f.submit '変更を保存' , class: "btn btn-success" %>
-    </div>
-  <% end %>
-  <div> <%= link_to "削除", review_path(@review), method: :delete %></div>
+  </div>
 </div>

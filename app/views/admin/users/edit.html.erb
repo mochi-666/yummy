@@ -5,9 +5,9 @@
           <span class="h2 mr-5", style="margin-top: 5%;"><%= @name %>さんの会員情報編集<span>
         </div>
         <div class="table-responsive-sm">
+        <%= form_with model: @user,url: admin_user_path, local:true do |f| %>
         <table class="table">
           <tbody class="table table-borderless">
-            <%= form_with model: @user,url: admin_user_path, local:true do |f| %>
             <tr>
               <td>会員ID</td>
               <td><%= @user.id %></td>
@@ -44,7 +44,6 @@
             </tr>
           </tbody>
         </table>
-        <fotter>
         <% end %>
        </div>
       </div>

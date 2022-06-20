@@ -11,4 +11,9 @@ class Store < ApplicationRecord
   has_many :store_images, dependent: :destroy
   accepts_attachments_for :store_images, attachment: :image, append: true
 
+  validates :name, presence: true
+  validates :store_images_images, presence: true
+  validates :explanation, presence: true
+  validates :genres, presence: true
+  validates :area, presence: true
 end

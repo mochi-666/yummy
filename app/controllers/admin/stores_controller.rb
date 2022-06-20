@@ -1,4 +1,5 @@
 class Admin::StoresController < ApplicationController
+   before_action :authenticate_admin!
 
   def index
     @stores = Store.page(params[:page]).per(4)
@@ -30,7 +31,7 @@ class Admin::StoresController < ApplicationController
 
   def create
     @store = Store.new(store_params)
-    if @store.save!
+    if @store.save
       redirect_to admin_store_path(@store.id)
     else
       render :new

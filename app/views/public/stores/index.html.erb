@@ -2,19 +2,23 @@
   <b style="margin-left: 100px; margin-top: 100px; font-size: xx-large;">店舗一覧</b>
   <div class="store_explanation">
     <div>
-      <b style="margin-left: -5%; font-size: large;">検索</b>
+      <b style="font-size: large;">検索</b>
       <%= search_form_for @search, url: stores_path do |f| %>
-      <%= f.label :name, "店舗名" %>
-      <%= f.search_field :name_cont %>
-      <%= f.label :area, "地域(都道府県)" %>
-      <%= f.search_field :area_cont %>
+      <div style="display: inline-block;">
+        <ul><%= f.label :name, "店舗名" %></ul>
+        <ul><%= f.search_field :name_cont %></ul>
+      </div>
+      <div style="display: inline-block;">
+        <ul><%= f.label :area, "地域(都道府県)" %></ul>
+        <ul> <%= f.search_field :area_cont %></ul>
+      </div>
       <%= f.submit "検索", class: "btn btn-success"  %>
        <% end %>
     </div>
     <div class="row" style="margin-top: 5%;">
+    <% @store_search.each do |store| %>
       <div class="card col-lg-6 col-12">
         <div class="row g-0">
-        <% @store_search.each do |store| %>
           <div class="col-md-4">
             <% if store.store_images.present? %>
               <% store.store_images.first(1).each do |image| %>
@@ -98,9 +102,9 @@
             </ul>
           </div>
         </div>
-        <% end %>
       </div>
     </div>
+    <% end %>
   </div>
   <div style="margin-left: 450px; margin-top: 50px;">
     <%= paginate @stores %>

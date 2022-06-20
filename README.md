@@ -23,7 +23,7 @@
 ・ネットサーフィン
 
 ## 設計書
-・yummy_フォルダー <https://drive.google.com/drive/folders/1xbWqxszml2eieB5ykhRqUUBUOODRd2WQ?usp=sharing> 
+・yummy_フォルダー <https://drive.google.com/drive/folders/1xbWqxszml2eieB5ykhRqUUBUOODRd2WQ?usp=sharing>
   ・実装機能リスト　 <https://docs.google.com/spreadsheets/d/142KZVBw_qFwkmghd2tzzO9V4Hv6sBsU20D7vLp8LgfU/edit#gid=1091086188>
 
 ## 開発環境
@@ -34,9 +34,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-検討中
-
-
-##メモ＃＃
-ジャンルは"rails c"で"Genre.create(name: "○○")"で追加
-⇒削除は"Genre.find(  ).destroy又はGenre.destroy_all
+フリー画像　pixabay  url:https://pixabay.com/ja/
