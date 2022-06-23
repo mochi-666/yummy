@@ -1,0 +1,48 @@
+<div class="container">
+  <b style="margin-left: 100px; margin-top: 100px; font-size: xx-large;">店舗一覧</b>
+  <p class="text-right"><%= link_to"新規登録", new_admin_store_path, class: "btn btn-success" %></p>
+  <div class="store_explanation">
+    <div>
+      <b style="margin-left: 100px; margin-top: 100px; font-size: large;">検索</b>
+      <%= search_form_for @search, url:  admin_stores_path do |f| %>
+      <%= f.label :name, "店舗名" %>
+      <%= f.search_field :name_cont %>
+      <%= f.label :area, "地域(都道府県)" %>
+      <%= f.search_field :area_cont %>
+      <%= f.submit "検索", class: "btn btn-success"  %>
+       <% end %>
+    </div>
+    <table style="margin-top: 50px; text-align: center;"　class="table table-success table-striped">
+      <tr class="border-top border-bottom font-weight-bold", style="text-align: center;">
+        <th>店舗画像</th>
+        <th>店舗名</th>
+        <th>地域</th>
+      </tr>
+      <% @store_search.each do |store| %>
+      <%# @stores.each do |store| %>
+      <tr class="border-top border-bottom">
+        <td style="width: 300px;">
+          <% if store.store_images.present? %>
+            <% store.store_images.first(1).each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+            <% end %>
+          <% end %>
+        </td>
+        <td style="width: 300px;">
+          <%= link_to admin_store_path(store.id) do %>
+            <%= store.name %>
+          <% end %>
+        </td>
+        <td style="width: 300px;">
+          <%= link_to admin_store_path(store.id) do %>
+            <%= store.area %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div style="margin-left: 450px; margin-top: 50px;">
+    <%= paginate @stores %>
+  </div>
+</div>

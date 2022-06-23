@@ -1,0 +1,2 @@
+module Public::GernresHelper
+end

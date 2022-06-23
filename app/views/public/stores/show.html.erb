@@ -1,0 +1,109 @@
+<div class="container">
+  <b style="margin-left: 100px; margin-top: 100px; font-size: xx-large;">店舗詳細</b><br>
+  <div style="display: inline-block; margin-left: 100px;">
+    <% @store.store_images.each do |image| %>
+      <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+    <% end %>
+  </div>
+  <table style="width: 400px; text-align-last: left; margin-left: 100px; margin-bottom: 50px;">
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">店舗名</td>
+      <td style="height: 50px; margin-left: 44px;"><%= @store.name %></td>
+    </tr>
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">ジャンル</td>
+      <td style="height: 50px; margin-left: 44px;">
+        <% @store.genres.each do |genre| %>
+          <%= genre.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">地域</td>
+      <td style="height: 50px; margin-left: 44px;"><%= @store.area %></td>
+    </tr>
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">店舗詳細</td>
+      <td style="height: 50px; margin-left: 30px;"><%= safe_join(@store.explanation.split("\n"),tag(:br)) %></td>
+    </tr>
+  </table>
+  <b style="font-size: large;">レビュー一覧</b>
+  <div style="text-align: end;">
+    <% if current_user.email == "guest2@example.com" %>
+    <% else %>
+      <%= link_to "新規レビュー作成" , new_review_path(store_id: @store.id), class: "btn btn-success" %>
+    <% end %>
+  </div><br>
+  <div class="row">
+  <% @reviews.each do |review| %>
+    <div class="card col-lg-6 col-12">
+    <%= link_to review_path(review) do %>
+      <div class="row g-0">
+        <div class="col-md-4">
+          <% review.review_images.first(1).each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+          <% end %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">タイトル</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;"><%=review.title%></span>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">シーン</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;">
+                      <% review.scenes.each do |scene| %>
+                      <%= scene.name %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">雰囲気</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;">
+                      <% review.atmospheres.each do |atmosphere| %>
+                        <%= atmosphere.name %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">レビュー内容</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;"><%= review.text %></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
+  </div>
+  <div style="margin-left: 450px; margin-top: 50px;">
+    <%= paginate @reviews %>
+  </div>
+</div>

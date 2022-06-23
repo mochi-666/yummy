@@ -1,0 +1,27 @@
+<div class="container-fluid">
+	<div class="row h-75 position-relative">
+	  <div class= "col-md-12 top-background-image">
+		  <div class="cover-text text-center" style="padding:15%;">
+				<p class="top-50 start-0 text-left font-weight-bold top-background-text">
+          ようこそyummyへ！<br>
+          yummyはみんなでつくる飲食店レビューサイトです。
+          例えばデートや友達との遊びで出かける機会は多いですが、おまかせで食事の場所となると決めるのは大変だと感じたことはありませんか？<br>
+          特にお店選びをする際に内装がおしゃれやデート向けインスタ映えといったキーワードがあると非常に行ってみたいと興味が湧いてきますよね。<br>
+          ですが、そういったコメントはレビューを開いた中に書かれてたりするため一見わかりにくいところが不便だと思うところがありませんか。<br>
+          それらがパッとわかるようなサイトとなってます。<br>
+          また、会員になるとレビュー投稿やコメントができるようになります。
+        </p>
+			</div>
+		</div>
+	</div>
+	<div style="display: inline-block" class="position-absolute">
+    <div style="display: inline-block;"><%= link_to 'ゲストログイン', user_guest_sign_in_path, method: :post, class: "btn btn-info" %></div>
+    <div style="display: inline-block;"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-info" %></div>
+    <% if user_signed_in? %>
+      <% if current_user.email == "guest2@example.com" %>
+      <% else%>
+        <div style="display: inline-block;"><%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %></d>
+      <% end %>
+    <% end %>
+  </div>
+</div>

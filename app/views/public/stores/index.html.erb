@@ -1,0 +1,112 @@
+<div class="container">
+  <b style="margin-left: 100px; margin-top: 100px; font-size: xx-large;">店舗一覧</b>
+  <div class="store_explanation">
+    <div>
+      <b style="font-size: large;">検索</b>
+      <%= search_form_for @search, url: stores_path do |f| %>
+      <div style="display: inline-block;">
+        <ul><%= f.label :name, "店舗名" %></ul>
+        <ul><%= f.search_field :name_cont %></ul>
+      </div>
+      <div style="display: inline-block;">
+        <ul><%= f.label :area, "地域(都道府県)" %></ul>
+        <ul> <%= f.search_field :area_cont %></ul>
+      </div>
+      <%= f.submit "検索", class: "btn btn-success"  %>
+       <% end %>
+    </div>
+    <div class="row" style="margin-top: 5%;">
+    <% @store_search.each do |store| %>
+      <div class="card col-lg-6 col-12">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <% if store.store_images.present? %>
+              <% store.store_images.first(1).each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <span class="font-weight-bold">店舗名</span>
+                    </div>
+                    <div class="col-md-8">
+                      <span style="text-align: right;">
+                        <%= link_to store_path(store.id) do %>
+                          <%= store.name%>
+                        <% end %>
+                        </span>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">シーン</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;">
+                      <% Scene.all.each do |scene| %>
+                        <% if store.reviews.joins(:scenes).exists?(scenes: { id:  scene.id} ) %>
+                          <%= scene.name %>
+                        <% end %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">雰囲気</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;">
+                      <% Atmosphere.all.each do |atmosphere| %>
+                        <% if store.reviews.joins(:atmospheres).exists?(atmospheres: { id:  atmosphere.id} ) %>
+                          <%= atmosphere.name %>
+                        <% end %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">ジャンル</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;">
+                      <% store.genres.each do |genre| %>
+                        <%= genre.name %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-4">
+                    <span class="font-weight-bold">地域</span>
+                  </div>
+                  <div class="col-md-8">
+                    <span style="text-align: right;"><%= store.area %></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div style="margin-left: 450px; margin-top: 50px;">
+    <%= paginate @stores %>
+  </div>
+</div>

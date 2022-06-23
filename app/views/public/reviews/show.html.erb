@@ -1,0 +1,69 @@
+<div class="container">
+  <b style="margin-left: 100px; margin-top: 100px; font-size: xx-large;">レビュー詳細</b>
+  <div style="text-align: end;">
+    <% if current_user.present? && @review.user == current_user %>
+      <%= link_to "編集", edit_review_path(params[:id]), class: "btn btn-success" %>
+    <% end %>
+  </div>
+  <div style="display: inline-block; margin-left: 100px;">
+     <% @review.review_images.each do |image| %>
+        <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+      <% end %>
+  </div>
+  <table style="width: 100%; margin-left: 10%; margin-bottom: 5%;">
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">タイトル</td>
+      <td style="height: 50px; margin-left: 44px;"><%= @review.title %></td>
+    </tr>
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">利用シーン</td>
+      <td style="height: 50px; margin-left: 44px;">
+        <% @review.scenes.each do |scene| %>
+          <%= scene.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">雰囲気</td>
+      <td style="height: 50px; margin-left: 44px;">
+        <% @review.atmospheres.each do |atmosphere| %>
+          <%= atmosphere.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td style="height: 50px;" class="font-weight-bold">レビュー内容</td>
+      <td style="height: 50px; margin-left: 30px;"><%= safe_join(@review.text.split("\n"),tag(:br)) %></td>
+    </tr>
+  </table>
+  <div style="margin-left: 10%;">
+    <div>
+    <% if current_user.email == "guest2@example.com" %>
+    <% else %>
+      <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
+        <div><%= f.text_area :comment, rows:'5', size: "60x5" ,placeholder: "コメントをここに" %></div>
+        <div style="margin-left: 40%; margin-top: 2%;"><%= f.submit "送信する" %></div>
+      <% end %>
+    <% end %>
+    </div>
+    <p>コメント件数：<%= @review.review_comments.count %></p>
+    <% @review.review_comments.each do |review_comment| %>
+    <div class="card">
+      <div class="card-header">
+        投稿者：<%= review_comment.user.nickname %>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= review_comment.comment %></p>
+        <p class="card-text">投稿日：<%= review_comment.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
+      <% if review_comment.user == current_user %>
+      <div style="text-align: end;">
+        <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, class: "btn btn-danger"  %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <p><%= link_to "#{@review.review_comments.count} コメント", review_path(@review.id) %></p>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+  <div class="container-fluid">
+	  <div class="row h-50">
+	    <div class= "col-md-6 offset-md-3 mt-5">
+	      <div>
+          <span class="h2 mr-5">新規会員登録<span>
+        </div>
+        <div class="table-responsive-sm">
+        <%= form_with model: @user, url:  user_registration_path(resource), local:true do |f| %>
+        <table class="table">
+          <tbody class="table table-borderless">
+            <%= render "public/shared/error_messages", resource: resource %>
+            <tr>
+              <td>名前(姓)</td>
+              <td><%= f.text_field :first_name, autofocus: true %></td>
+              <td>(名)</td>
+              <td><%= f.text_field :last_name, autofocus: true %></td>
+            </tr>
+            <tr>
+              <td>フリガナ(セイ)</td>
+              <td><%= f.text_field :first_name_kana, autofocus: true %></td>
+              <td>(メイ)</td>
+              <td><%= f.text_field :last_name_kana, autofocus: true %></td>
+            </tr>
+            <tr>
+              <td>ニックネーム</td>
+              <td><%= f.text_field :nickname, autofocus: true %> </td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %> </td>
+            </tr>
+            <tr>
+              <td> パスワード(６文字以上)</td>
+              <td>
+                <% if @minimum_password_length %>
+                <% end %>
+                <%= f.password_field :password, autocomplete: "new-password" %>
+              </td>
+            </tr>
+            <tr>
+              <td>パスワード(確認)</td>
+              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit "新規登録" ,class: "btn btn-success" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <% end %>
+       </div>
+      </div>
+    </div>
+  </div>

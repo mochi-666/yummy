@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gernre_id: 1
+  tag_id: 1
+  scene_id: 1
+  atmosphere_id: 1
+  name: MyString
+  image_id: MyString
+  explanation: MyText
+
+two:
+  gernre_id: 1
+  tag_id: 1
+  scene_id: 1
+  atmosphere_id: 1
+  name: MyString
+  image_id: MyString
+  explanation: MyText

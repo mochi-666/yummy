@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>レビュー詳細</h2>
+  <p class="text-right"><%= link_to "レビュー削除", admin_review_path(@review), method: :delete, class: "btn btn-danger" %></p>
+  <table>
+    <tr>
+      <td style="display: inline-block;">
+        <% @review.review_images.each do |image| %>
+          <%= attachment_image_tag image, :image, :fill, 150, 150 %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">タイトル</td>
+      <td style="height: 50px;"><%= @review.title %></td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">利用シーン</td>
+      <td style="height: 50px;">
+        <% @review.scenes.each do |scene| %>
+          <%= scene.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">雰囲気</td>
+      <td style="height: 50px;">
+        <% @review.atmospheres.each do |atmosphere| %>
+          <%= atmosphere.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">レビュー</td>
+      <td style="height: 50px;"><%= safe_join(@review.text.split("\n"),tag(:br)) %></td>
+    </tr>
+  </table>
+  <div class="row">
+    <% @review.review_comments.each do |review_comment| %>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">コメント件数：<%= @review.review_comments.count %></h5>
+          <h5 class="card-title">投稿者：<%= review_comment.user.nickname %> <%= review_comment.created_at.strftime('%Y/%m/%d') %></h5>
+          <p class="card-text", style="display: inline-block;">コメント：<%= review_comment.comment %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 1%;"><%= link_to "コメントを削除", admin_review_review_comment_path(review_comment.review, review_comment), method: :delete, class: "btn btn-danger"  %></div>
+  <% end %>
+</div>

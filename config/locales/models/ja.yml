@@ -1,0 +1,32 @@
+---
+ja:
+  activerecord:
+    models:
+      store: ストア
+    attributes:
+      store:
+        area: エリア
+        name: 店舗名
+        store_images_images: 画像
+        explanation: 店舗説明
+        genres: ジャンル
+      user:
+        first_name: 名字
+        last_name: 名前
+        first_name_kana: 名字(カタカナ)
+        last_name_kana: 名前(カタカナ)
+        email: メールアドレス
+        nickname: ニックネーム
+      review:
+        title: タイトル
+        review_images_images: 画像
+        scenes: シーン
+        atmospheres: 雰囲気
+        text: レビュー
+      
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"

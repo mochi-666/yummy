@@ -1,0 +1,44 @@
+<div class="container">
+  <b style="margin-left: 50px; margin-top: 100px; font-size: xx-large;">店舗情報編集</b>
+  <p class="text-right"><%= link_to"店舗削除", admin_store_path(@store), method: :delete, class: "btn btn-danger" %></p>
+  <% if @store.errors.any? %>
+  <%= @store.errors.count %>件のエラーが発生しました
+    <% @store.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+  <%= form_with model: @store,url: admin_store_path, local:true do |f| %>
+  <div style="display: inline-block; margin-left: 250px;">
+    <div class="col", style="margin-top: 50px;">
+      <p><%= f.label :store_images_images, '店舗画像' %></p>
+      <p><%= f.attachment_field :store_images_images, multiple: true  %></p>
+    </div>
+    <div class="col">
+      <p><%= f.label :area, "地域(都道府県)" %></p>
+      <p><%= f.text_field :area, size: "40x20" %></p>
+    </div>
+    <div class="col">
+      <p><%= f.label :genre, "ジャンル" %></p>
+      <p>
+        <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+          <%= genre.label do %>
+            <%= genre.check_box %>
+            <%= genre.text %>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+    <div class="col">
+      <p><%= f.label :name, "店舗名" %></p>
+      <p><%= f.text_field :name, size: "40x20" %></p><br>
+    </div>
+    <div class="col">
+      <p><%= f.label :explanation, "店舗説明" %></p>
+      <p><%= f.text_area :explanation, size: "50x5" %></p><br>
+    </div>
+    <div style="margin-left: 200px;">
+      <%= f.submit '情報を変更' , class: "btn btn-success" %>
+    </div>
+    <% end %>
+  </div>
+</div>
