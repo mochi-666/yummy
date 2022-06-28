@@ -10,8 +10,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <heade class="head">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <header class="head">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FCBC3D;">
       <a class="navbar-brand" href="/", style="font-family: HGP行書体;"><h2>Yummy</h2></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -55,4 +55,6 @@
     </nav>
     <%= yield %>
   </header>
+  <footer class="footer" style="background-color: beige; width:100%; height: 50px;">
+  </footer>
 </html>

@@ -50,11 +50,11 @@
                   </div>
                   <div class="col-md-8">
                     <span style="text-align: right;">
-                      <% Scene.all.each do |scene| %>
-                        <% if store.reviews.joins(:scenes).exists?(scenes: { id:  scene.id} ) %>
-                          <%= scene.name %>
-                        <% end %>
+                    <% Scene.all.each do |scene| %>
+                      <% if store.reviews.joins(:scenes).exists?(scenes: { id:  scene.id} ) %>
+                        <%= scene.name %>
                       <% end %>
+                    <% end %>
                     </span>
                   </div>
                 </div>

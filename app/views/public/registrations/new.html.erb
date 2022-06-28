@@ -4,49 +4,44 @@
 	      <div>
           <span class="h2 mr-5">新規会員登録<span>
         </div>
-        <div class="table-responsive-sm">
+        <div class="table-responsive-sm" style="display: flex; margin-top: 5%; text-align: center;">
+        <%= render "public/shared/error_messages", resource: resource %>
         <%= form_with model: @user, url:  user_registration_path(resource), local:true do |f| %>
-        <table class="table">
-          <tbody class="table table-borderless">
-            <%= render "public/shared/error_messages", resource: resource %>
-            <tr>
-              <td>名前(姓)</td>
-              <td><%= f.text_field :first_name, autofocus: true %></td>
-              <td>(名)</td>
-              <td><%= f.text_field :last_name, autofocus: true %></td>
-            </tr>
-            <tr>
-              <td>フリガナ(セイ)</td>
-              <td><%= f.text_field :first_name_kana, autofocus: true %></td>
-              <td>(メイ)</td>
-              <td><%= f.text_field :last_name_kana, autofocus: true %></td>
-            </tr>
-            <tr>
-              <td>ニックネーム</td>
-              <td><%= f.text_field :nickname, autofocus: true %> </td>
-            </tr>
-            <tr>
-              <td>メールアドレス</td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %> </td>
-            </tr>
-            <tr>
-              <td> パスワード(６文字以上)</td>
-              <td>
-                <% if @minimum_password_length %>
-                <% end %>
-                <%= f.password_field :password, autocomplete: "new-password" %>
-              </td>
-            </tr>
-            <tr>
-              <td>パスワード(確認)</td>
-              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><%= f.submit "新規登録" ,class: "btn btn-success" %></td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="table col-md-12" style="display: flex; margin-top: 5%; text-align: center;">
+            <span class="header col-3" style="display: inline-block;">名前(姓)</span>
+            <span class="header col-3"><%= f.text_field :first_name, autofocus: true %></span>
+            <span class="header col-3">(名)</span>
+            <span class="header col-3"><%= f.text_field :last_name, autofocus: true %></span>
+          </div>
+          <div class="table col-md-12" style="display: flex; margin-top: 5%; text-align: center;">
+            <span class="header col-3" style="display: inline-block;">フリガナ(セイ)</span>
+            <span class="header col-3"><%= f.text_field :first_name_kana, autofocus: true %></span>
+            <span class="header col-3">(メイ)</span>
+            <span class="header col-3"><%= f.text_field :last_name_kana, autofocus: true %></span>
+          </div>
+          <div class="table col-md-12" style="display: flex; margin-top: 5%; text-align: center;">
+            <span class="header col-3" style="display: inline-block;">ニックネーム</span>
+            <span class="header col-3"><%= f.text_field :nickname, autofocus: true %></span>
+          </div>
+          <div class="table col-md-12" style="display: flex; margin-top: 5%; text-align: center;">
+            <span class="header col-3" style="display: inline-block;">メールアドレス</span>
+            <span class="header col-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></span>
+          </div>
+          <div class="table col-md-12" style="display: flex; margin-top: 5%; text-align: center;">
+            <span class="header col-3" style="display: inline-block;">パスワード(６文字以上)</span>
+            <span class="header col-3">
+              <% if @minimum_password_length %>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </span>
+          </div>
+          <div class="table col-md-12" style="display: flex; margin-top: 5%; text-align: center;">
+            <span class="header col-3" style="display: inline-block;">パスワード(確認)</span>
+            <span class="header col-3"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></span>
+          </div>
+          <div class="text-center" style="margin: 5%;">
+            <%= f.submit "新規登録" ,class: "btn btn-success" %>
+          </div>
         <% end %>
        </div>
       </div>

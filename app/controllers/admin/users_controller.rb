@@ -7,6 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @name = @user.first_name + @user.last_name
     @name_kana = @user.first_name_kana + @user.last_name_kana
   end
 
