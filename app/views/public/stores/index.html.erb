@@ -50,7 +50,7 @@
                   </div>
                   <div class="col-md-8">
                     <span style="text-align: right;">
-                      <% if store.reviews.joins(:scenes) %>
+                      <% if store.reviews.present? %>
                         <% Scene.all.each do |scene| %>
                           <% if store.reviews.joins(:scenes).exists?(scenes: { id:  scene.id} ) %>
                             <%= scene.name %>
@@ -70,10 +70,14 @@
                   </div>
                   <div class="col-md-8">
                     <span style="text-align: right;">
-                      <% Atmosphere.all.each do |atmosphere| %>
-                        <% if store.reviews.joins(:atmospheres).exists?(atmospheres: { id:  atmosphere.id} ) %>
-                          <%= atmosphere.name %>
+                      <% if store.reviews.present? %>
+                        <% Atmosphere.all.each do |atmosphere| %>
+                          <% if store.reviews.joins(:atmospheres).exists?(atmospheres: { id:  atmosphere.id} ) %>
+                            <%= atmosphere.name %>
+                          <% end %>
                         <% end %>
+                      <% else %>
+                        評価がありません
                       <% end %>
                     </span>
                   </div>
